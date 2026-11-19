@@ -57,8 +57,8 @@ $("x").onclick=function(){dlg.close()};
 dlg.addEventListener("click",function(ev){if(ev.target===dlg)dlg.close()});
 [].forEach.call(document.querySelectorAll(".cp"),function(b){b.onclick=function(){var v=b.getAttribute("data-copy");function ok(){$("cn").textContent="Copied: "+v}function no(){$("cn").textContent="Select and copy: "+v}
 try{navigator.clipboard.writeText(v).then(ok,no)}catch(e){no()}}});
-/* resume */
-$("fota").onclick=function(){$("fs").textContent="Resume available on request."};
+/* FOTA */
+$("fota").onclick=function(){var s=$("fs");s.textContent="Preparing resume…";var a=document.createElement("a");a.href="Varun_K_S_Resume.pdf";a.download="Varun_K_S_Resume.pdf";document.body.appendChild(a);a.click();a.remove();s.textContent="Resume download started."};
 /* terminal */
 var Q={"Tech stack":"Edge AI: YOLOv8 and YOLOv5 on Jetson Orin Nano, BeagleBone AI-64 and Raspberry Pi 4. Firmware: Embedded C on TI TMS570 and RM46xx, STM32, with MibSPI, I2C, EMAC and lwIP.",
 "Current role":"Firmware Engineer at Mindteck, Bangalore, since Nov 2025. Embedded firmware and YOLOv8 edge AI proofs of concept.",
