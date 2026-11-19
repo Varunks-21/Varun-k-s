@@ -12,10 +12,10 @@ var A={"Edge AI pipeline":[
 ["YOLOv8 inference","Defect and component-level detection for PCBs, eye gaze detection and object detection."],
 ["Sensor fusion","Sound and sensor signals are fused for motor health. Fault classification runs only after the fused signal crosses a threshold."],
 ["Traceability","Rework traceability, audit logging and monitoring output for Industry 4.0 manufacturing."]],
-"Railway firmware":[
-["CEU","The Central Evaluator Unit sends Track Data Responses to the Station Master panel."],
-["Comms drivers","MibSPI, I2C and Ethernet (EMAC with lwIP) drivers, built with HALCoGen and Code Composer Studio."],
-["TMS570LC4354","Embedded C firmware on the TI safety microcontroller for the Station Master panel."],
+"Firmware":[
+["Control unit","The control unit sends track data responses to the operator panel."],
+["Comms drivers","MibSPI, I2C and Ethernet (EMAC with lwIP) communication drivers, plus NOR Flash, RTC, LED and IO-expander drivers. Built with HALCoGen and Code Composer Studio."],
+["MCUs","TI TMS series, TI RM series and STM32 microcontrollers for embedded firmware development."],
 ["RTI schedules","Multiple RTI schedules run periodic tasks independently, so time-critical IO-expander control pulses stay apart from the main application schedule."],
 ["Panel I/O","TLC6C5748 LED drivers (5 devices, 40 tracks, chip-select) and an MCP23S17 SPI IO-expander driver in development."],
 ["Startup safety","Startup safety logic follows a defined startup safety flow."]]};
@@ -24,7 +24,7 @@ function arch(){var f=$("fl");f.textContent="";var n=A[cu];n.forEach(function(x,
 Object.keys(A).forEach(function(k){var b=el("button","chip",k);b.setAttribute("role","tab");b.setAttribute("aria-selected",k===cu);b.onclick=function(){cu=k;[].forEach.call($("at").children,function(y){y.setAttribute("aria-selected","false")});b.setAttribute("aria-selected","true");arch()};$("at").appendChild(b)});arch();
 /* builds */
 var P=[
-{t:"CEL UMSDAC Station Master Panel – Embedded Firmware",c:"fw",s:"Jun 2026",e:"Present",k:202606,g:["TMS570","Embedded C","lwIP","RTI"],b:["TMS570LC4354 firmware for communication between the Central Evaluator Unit and the Station Master panel.","MibSPI, I2C and EMAC (lwIP) drivers, LED and IO-expander drivers, RTI task scheduling and startup safety logic.","Built with CCS and HALCoGen, verified with a logic analyzer and Docklight."]},
+{t:"Operator Panel – Embedded Firmware",c:"fw",s:"Jun 2026",e:"Present",k:202606,g:["MCUs","Embedded C","lwIP","RTI"],b:["Embedded firmware for communication between a control unit and an operator panel.","MibSPI, I2C and EMAC (lwIP) communication drivers, NOR Flash, RTC, LED and IO-expander drivers.","RTI task scheduling and startup logic, built with CCS and HALCoGen and verified with a logic analyzer and Docklight."]},
 {t:"AI-Spec2Code",c:"ai",s:"Updated Jun 2026",k:202606,g:["Python","AI","Embedded"],b:["AI tool that converts Software Design Documents into implementation-ready embedded projects.","Generates hardware recommendations and controller selection from the design document. Private repository."]},
 {t:"PCB Fault Detection and Rework Traceability System",c:"ai",s:"Nov 2025",e:"Jun 2026",k:202511,g:["YOLOv8","Jetson","AOI","Industry 4.0"],b:["YOLOv8 on NVIDIA Jetson upgrading an AOI system to defect and component-level detection.","DataMatrix decoding, real-time defect detection, audit logging and cloud-based traceability. Private repository."]},
 {t:"Predictive Maintenance of Li-ion Battery",c:"ai",s:"Nov 2025",e:"Jun 2026",k:202511,g:["Raspberry Pi","INA226","TMP117","Python"],b:["AI-based battery monitoring on Raspberry Pi with INA226 and TMP117 sensors.","Predicts state of charge, state of health, remaining useful life, runtime and faults in real time. Private repository."]},
@@ -36,7 +36,7 @@ var P=[
 {t:"Coal Mining Safety System",c:"iot",s:"Jun 2024",e:"Sep 2024",k:202406,g:["IoT","Ubidots","Sensors"],b:["Gas and fire detection with live underground environmental monitoring on Ubidots."]},
 {t:"Smart Home Automation System",c:"iot",s:"Jun 2024",e:"Sep 2024",k:202406,g:["RFID","Ubidots","Telegram"],b:["Lighting, motor control and RFID-based smart doors with remote access through Ubidots and Telegram.","4th place at the BGS ACU National Hackathon."]}];
 var X=[
-{t:"Firmware Engineer (Edge AI and Embedded) – Mindteck, Bangalore",s:"Nov 2025",e:"Present",b:["Railway firmware on TI TMS570: MibSPI, I2C, EMAC with lwIP, RTI scheduling and startup safety logic.","YOLOv8 edge AI proofs of concept on Jetson, BeagleBone and Raspberry Pi for Industry 4.0."]},
+{t:"Firmware Engineer (Edge AI and Embedded) – Mindteck, Bangalore",s:"Nov 2025",e:"Present",b:["Embedded firmware: MibSPI, I2C, EMAC with lwIP, NOR Flash, RTC, RTI scheduling and startup logic.","YOLOv8 edge AI proofs of concept on Jetson, BeagleBone and Raspberry Pi for Industry 4.0."]},
 {t:"Intern, Sensor and Vision Technology – CMTI, Bengaluru",s:"Feb 2025",e:"May 2025",b:["Thermal mass flow sensor calibration, data logging, analog circuits and PCB testing."]},
 {t:"Intern, Embedded and IoT Systems – Loginware, Hassan",s:"Oct 2023",e:"Nov 2023",b:["IoT systems with NodeMCU and Raspberry Pi, integrating hardware and software."]},
 {t:"Intern, Satellite Technology – ISRO Master Control Facility, Hassan",s:"Sep 2022",e:"Oct 2022",b:["Satellite telemetry, tracking and control systems."]}];
@@ -57,11 +57,11 @@ $("x").onclick=function(){dlg.close()};
 dlg.addEventListener("click",function(ev){if(ev.target===dlg)dlg.close()});
 [].forEach.call(document.querySelectorAll(".cp"),function(b){b.onclick=function(){var v=b.getAttribute("data-copy");function ok(){$("cn").textContent="Copied: "+v}function no(){$("cn").textContent="Select and copy: "+v}
 try{navigator.clipboard.writeText(v).then(ok,no)}catch(e){no()}}});
-/* FOTA */
-$("fota").onclick=function(){var p=0,s=$("fs");var iv=setInterval(function(){p+=RM?100:8;if(p>=100){clearInterval(iv);s.textContent="Resume download started.";var a=document.createElement("a");a.href="assets/Varun_K_S_N26.pdf";a.download="Varun_K_S_N26.pdf";document.body.appendChild(a);a.click();a.remove()}else s.textContent="Preparing resume… "+p+"%"},90)};
+/* resume */
+$("fota").onclick=function(){$("fs").textContent="Resume available on request."};
 /* terminal */
 var Q={"Tech stack":"Edge AI: YOLOv8 and YOLOv5 on Jetson Orin Nano, BeagleBone AI-64 and Raspberry Pi 4. Firmware: Embedded C on TI TMS570 and RM46xx, STM32, with MibSPI, I2C, EMAC and lwIP.",
-"Current role":"Firmware Engineer at Mindteck, Bangalore, since Nov 2025. Railway firmware on TMS570 plus YOLOv8 edge AI proofs of concept.",
+"Current role":"Firmware Engineer at Mindteck, Bangalore, since Nov 2025. Embedded firmware and YOLOv8 edge AI proofs of concept.",
 "Top achievement":"1st place at the Mindteck Global Mind AI-thon 2026 with an Industry 4.0 project, within months of joining.",
 "Best project":"PCB Fault Detection and Rework Traceability: YOLOv8 on Jetson with DataMatrix decoding, audit logging and traceability.",
 "Notice period":"30 days.","Salary":"Depends on the role and current market standards.","Relocation":"Yes, open to relocation."};
