@@ -72,9 +72,6 @@ var hb=el("button","chip","Contact");hb.onclick=function(){say("u","> Contact");
 function resetT(){lg.textContent="";say(0,"System init… I am Edge-V. Select a query to fetch recruiter data.")}
 $("tb").onclick=function(){var o=$("tp").classList.toggle("open");$("tb").setAttribute("aria-expanded",o);if(!o)resetT()};
 
-(function(){var b=$("boot"),v=$("vcc"),done=false;function go(){if(done)return;done=true;$("bs").textContent="> SYSTEM NOMINAL.";setTimeout(function(){b.classList.add("gone");try{sessionStorage.setItem("booted","1")}catch(e){}},RM?0:450)}
-try{if(sessionStorage.getItem("booted")||RM){b.classList.add("gone");done=true}}catch(e){}
-v.oninput=function(){if(+v.value>=96)go()};$("skip").onclick=go})();
 (function(){if(RM||!matchMedia("(hover:hover)").matches)return;var cur=null;function clr(c){c.style.setProperty("--rx","0deg");c.style.setProperty("--ry","0deg")}
 document.addEventListener("pointermove",function(ev){var c=ev.target.closest&&ev.target.closest(".tl .cd");if(cur&&cur!==c)clr(cur);cur=c;if(!c)return;var r=c.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width,y=(ev.clientY-r.top)/r.height;c.style.setProperty("--ry",((x-.5)*10).toFixed(2)+"deg");c.style.setProperty("--rx",((.5-y)*8).toFixed(2)+"deg");c.style.setProperty("--mx",(x*100)+"%");c.style.setProperty("--my",(y*100)+"%")});
 document.addEventListener("pointerleave",function(){if(cur)clr(cur);cur=null})})();
